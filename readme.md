@@ -99,3 +99,5 @@ Activer le serveur DHCP au démarrage Pour vous assurer que le serveur DHCP dém
 sudo systemctl enable isc-dhcp-server
 ```
 
+## Routage avancé
+Vous pouvez implémenter des fonctionnalités de routage avancées à l’aide d’outils tels que <code>iproute2</code>
