@@ -64,4 +64,5 @@ Rendez le changement permanent en installant : <code>iptables-persistent</code>
 ```bash
 sudo apt update
 sudo apt install iptables-persistent
+iptables-save > /etc/iptables/rules.v4
 ```
