@@ -88,3 +88,14 @@ subnet 192.168.1.0 netmask 255.255.255.0 {
   option domain-name-servers 8.8.8.8, 8.8.4.4;
 }
 ```
+### Étape 3
+Démarrez le serveur DHCP
+```bash
+sudo systemctl start isc-dhcp-server
+```
+### Étape 4
+Activer le serveur DHCP au démarrage Pour vous assurer que le serveur DHCP démarre au démarrage
+```bash
+sudo systemctl enable isc-dhcp-server
+```
+
