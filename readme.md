@@ -36,7 +36,7 @@ ip addr
 ```
 Vous devriez voir une liste d’interfaces comme <code>eth0 eth1</code> ... etc
 ### Étape 2
-Configurer les interfaces réseau (Attribuer une adresse IP à chaque interface)
+Configurez les interfaces réseau (Attribuer une adresse IP à chaque interface)
 ```bash
 sudo vim /etc/network/interfaces
 ```
@@ -47,4 +47,21 @@ auto eth1
 iface eth1 inet static
     address 192.168.1.1
     netmask 255.255.255.0
+```
+### Étape 3
+Appliquez les modifications aux interfaces réseau
+```bash
+sudo systemctl restart networking
+```
+
+## Configuration du NAT
+### Étape 1
+Pour activer le NAT pour le trafic sortant de votre réseau local, utilisez : <code>iptables</code>
+```bash
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+```
+Rendez le changement permanent en installant : <code>iptables-persistent</code>
+```bash
+sudo apt update
+sudo apt install iptables-persistent
 ```
