@@ -8,13 +8,13 @@ Un routeur est un appareil qui connecte plusieurs réseaux et achemine les donn�
 Votre machine Ubuntu peut servir de routeur en tirant parti de ses interfaces réseau et en configurant des tables de routage.
 
 ## Activation du transfert IP
-### Étape 1:
+### Étape 1
 Vérifier l’état actuel du transfert IP Avant de continuer, vérifiez si le transfert IP est actuellement activé sur votre machine Ubuntu :
 ```bash
 cat /proc/sys/net/ipv4/ip_forward
 ```
 Si la sortie est "0" , le transfert IP est désactivé. Si c’est "1", il est déjà activé (vous pouvez sauter l'étape suivante)
-### Étape 2:
+### Étape 2
 Activer le transfert IP Pour activer temporairement le transfert IP (valable jusqu’au prochain redémarrage), exécutez :
 ```bash
 sudo sysctl -w net.ipv4.ip_forward=1
@@ -22,4 +22,29 @@ sudo sysctl -w net.ipv4.ip_forward=1
 Pour rendre la modification permanente, modifiez le fichier et décommentez ou ajoutez la ligne : <code>/etc/sysctl.conf</code>
 ```bash
 net.ipv4.ip_forward=1
+```
+Ensuite, appliquez les modifications suivantes :
+```bash
+sudo sysctl -p /etc/sysctl.conf
+```
+
+## Configuration des interfaces réseau
+### Étape 1
+Identifiez vos interfaces réseau
+```bash
+ip addr
+```
+Vous devriez voir une liste d’interfaces comme <code>eth0 eth1</code> ... etc
+### Étape 2
+Configurer les interfaces réseau (Attribuer une adresse IP à chaque interface)
+```bash
+sudo vim /etc/network/interfaces
+```
+Voici un exemple de configuration pour <code>eth1</code>
+```bash
+# eth1 - Internal LAN interface
+auto eth1
+iface eth1 inet static
+    address 192.168.1.1
+    netmask 255.255.255.0
 ```
