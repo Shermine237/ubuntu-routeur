@@ -56,9 +56,9 @@ sudo systemctl restart networking
 
 ## Configuration du NAT
 ### Étape 1
-Pour activer le NAT pour le trafic sortant de votre réseau local, utilisez : <code>iptables</code>
+Pour activer le NAT pour le trafic sortant de votre réseau local, utilisez : <code>iptables</code> pour chaque interface
 ```bash
-sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
 ```
 Rendez le changement permanent en installant : <code>iptables-persistent</code>
 ```bash
