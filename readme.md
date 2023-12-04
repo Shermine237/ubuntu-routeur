@@ -100,4 +100,15 @@ sudo systemctl enable isc-dhcp-server
 ```
 
 ## Routage avancé
-Vous pouvez implémenter des fonctionnalités de routage avancées à l’aide d’outils tels que <code>iproute2</code>
+Vous pouvez implémenter des fonctionnalités de routage avancées à l’aide d’outils tels que <code>iproute2</code>. Exemple basic :
+```bash
+ip route add 192.168.1.0/24 dev eth1
+```
+Pour voir la table de routage:
+```bash
+ip route show table main
+```
+Pour prendre en compte nos modification :
+```bash
+ip route flush cache
+```
