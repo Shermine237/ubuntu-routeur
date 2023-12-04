@@ -66,3 +66,25 @@ sudo apt update
 sudo apt install iptables-persistent
 iptables-save > /etc/iptables/rules.v4
 ```
+
+## Configuration du serveur DHCP
+Si vous souhaitez que votre routeur Ubuntu attribue des adresses IP aux périphériques du réseau local
+### Étape 1
+Installer le serveur DHCP
+```bash
+sudo apt update
+sudo apt install isc-dhcp-server
+```
+### Étape 2
+ Modifiez le fichier de configuration du serveur DHCP
+```bash
+sudo vim /etc/dhcp/dhcpd.conf
+```
+Voici un exemple de configuration :
+```bash
+subnet 192.168.1.0 netmask 255.255.255.0 {
+  range 192.168.1.10 192.168.1.50;
+  option routers 192.168.1.1;
+  option domain-name-servers 8.8.8.8, 8.8.4.4;
+}
+```
